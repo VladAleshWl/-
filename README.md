@@ -26,3 +26,15 @@
 
 ## Чтобы установить
 #Здесь будет ссылка на приложение(когда-нибудь)#
+
+
+
+# Mobile app "MistyFlower"
+A project created within the framework of the discipline "Development of mobile applications" by third-year students of the Volga branch of the Volga State University.
+   
+The authors:
+- Alyoshin Vladislav (ISP-202)
+- Votskaya Sophia (ISP-202)
+- Krapivkina Miroslava (ISP-202)
+
+#Here will be a link to a working site (someday)#
