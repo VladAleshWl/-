@@ -37,5 +37,5 @@ The authors:
 - Krapivkina Miroslava (ISP-202)
 
 #
-Here will be a link to a [woking site](http://mistyflower.ru)
+
 #
