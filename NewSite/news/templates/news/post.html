@@ -1,0 +1,19 @@
+{% extends 'news/testt.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="post">
+    <h1>{{post.title}}</h1>
+
+    {% if post.photo %}
+    <p><img src="{{post.photo.url}}" alt=""></p>
+    {% endif %}
+
+
+    {% autoescape off %}
+    <p>{{post.content|linebreaks}}</p>
+    {% endautoescape %}
+</div>
+
+{% endblock %}

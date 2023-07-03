@@ -1,0 +1,26 @@
+{% extends 'news/testt.html '%}
+{% load news_tags %}
+
+{% block content %}
+
+
+
+<div class='container-gallery'>
+    {% for ph in photo %}
+    <div class="container-photo">
+        {% if ph.photo %}
+        <a href="{{ ph.get_absolute_url }}"><img src="{{ ph.photo.url }}" alt=""></a>
+        <p>{{ph.title}}</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+

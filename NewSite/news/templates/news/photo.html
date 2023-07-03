@@ -1,0 +1,16 @@
+{% extends 'news/testt.html' %}
+
+{% block content %}
+
+<div class="post">
+    <h1>{{photo.title}}</h1>
+
+    {% if photo.photo %}
+    <p><img src="{{photo.photo.url}}" alt=""></p>
+    {% endif %}
+
+    <p>{{photo.content|linebreaks}}</p>
+
+</div>
+
+{% endblock %}

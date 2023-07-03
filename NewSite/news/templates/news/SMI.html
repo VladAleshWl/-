@@ -1,0 +1,28 @@
+{% extends 'news/testt.html '%}
+
+{% block content %}
+<ul class="list-articles">
+    {% for p in post %}
+    <li>
+        <div class='container-news'>
+            <h2>{{p.title}}</h2>
+
+            {% autoescape off %}
+            <p class='news-text'>{{p.content|truncatewords:17}}</p>
+            {% endautoescape %}
+
+
+            {% if p.photo %}
+            <p><img src="{{ p.photo.url }}" alt="" class="news-img"></p>
+            {% endif %}
+            <div class="clear"></div>
+            <div class='conteiner-more'>
+                <p class="date"> Дата: {{p.time_update|date:"d-m-Y"}}</p>
+                <p class="link-read-post"><a href="{{ p.get_absolute_url }}">Подробнее</a></p>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

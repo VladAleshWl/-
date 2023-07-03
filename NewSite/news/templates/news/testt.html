@@ -1,0 +1,92 @@
+{% load static %}
+{% load news_tags %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" href="{% static 'news/css/maybebaby.css' %}">
+	<link rel="shortcut icon" href="{% static 'news/images/mainn.ico' %}" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MistyFlower</title>
+</head>
+<body>
+    <header class="justify-content-center py-3">
+      <div class=topmenu>
+		 <div class="col-3"><img src="{% static 'news/images/LAPA.png' %}" alt="" class='icon'></div>
+		 <div class='col-3'>Mistyflower</div>
+		 {% if request.user.is_authenticated %}
+		 <div class="col-3"><img src="{% static 'news/images/pers.png' %}" alt="" class="profile-img">{{ user.username }} |
+			 <a href="{% url 'logout' %}" class="nav-link">Выйти</a></div>
+			{% else %}
+			<div class="col-3"><a href="{% url 'register' %}" class="nav-link">Регистрация</a> | <a href="{% url 'login' %}" class="nav-link">Войти</a></div>
+		 {% endif %}
+      </div>
+      <div class="header d-flex justify-content-center">
+          <ul class="nav nav-pills" id="main_nav">
+              {% for m in menu %}
+					{% if m.title == "Персонажи" %}
+						<li><a href="{% url m.url_name %}" class="nav-link">{{m.title}}</a>
+                            <ul>
+                                <li><a href="{% url 'gallery' %}">Все категории</a></li>
+                                {% show_categories cat_selected=cat_selected %}
+                            </ul>
+                        </li>
+					{% else %}
+					<li><a href="{% url m.url_name %}" class="nav-link">{{m.title}}</a></li>
+                    {% endif %}
+              {% endfor %}
+			</ul>
+			<div class="clear"></div>
+	  </div>
+  </header>
+  <main>
+    <aside><img src="{% static 'news/images/left.png'%}" alt="" class="paints"></aside>
+      <article>
+		  <div class="content-text">
+			  {% block content %}
+			  {% endblock %}
+
+            {% if page_obj.has_other_pages %}
+			<nav class="list-pages">
+			<ul>
+				{% if page_obj.has_previous %}
+				<li class="page-num">
+					<a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+				</li>
+				{% endif %}
+
+				{% for p in paginator.page_range %}
+					{% if page_obj.number == p %}
+						<li class="page-num page-num-selected">{{ p }}</li>
+					{% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+						<li class="page-num">
+							<a href="?page={{ p }}">{{ p }}</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+
+				{% if page_obj.has_next %}
+				<li class="page-num">
+					<a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+				</li>
+				{% endif %}
+			</ul>
+		</nav>
+		{% endif %}
+
+	      </div>
+    </article>
+    <aside> <img src="{% static 'news/images/right.png'%}" alt="" class="paints"></aside>
+  </main>
+  <footer>
+		<p>Подписаться на наши новости</p>
+		<ul>
+			<li><a href="https://t.me/MistyFlower" target="_ blank">Телеграмм</a></li>
+			<li><a href="https://vk.com/id510395072" target="_ blank">Вконтакте </a></li>
+		</ul>
+  </footer>
+</body>
+</html>
